@@ -132,8 +132,10 @@ class Mpv < Formula
     bash_completion.install "etc/mpv.bash-completion" => "mpv"
     zsh_completion.install "etc/_mpv.zsh" => "_mpv"
 
-    system "python3", "TOOLS/osxbundle.py", "build/mpv"
-    prefix.install "build/mpv.app"
+    if OS.mac?
+      system "python3", "TOOLS/osxbundle.py", "build/mpv"
+      prefix.install "build/mpv.app"
+    end
   end
 
   test do
