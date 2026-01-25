@@ -113,12 +113,12 @@ class Mpv < Formula
 
     bash_completion.install "etc/mpv.bash-completion" => "mpv"
     zsh_completion.install "etc/_mpv.zsh" => "_mpv"
-  
+
     if OS.mac?
       system "python3", "TOOLS/osxbundle.py", "build/mpv"
       prefix.install "build/mpv.app"
     end
-end
+  end
 
   test do
     system bin/"mpv", "--ao=null", "--vo=null", test_fixtures("test.wav")
@@ -128,4 +128,4 @@ end
     ENV.append_path "PKG_CONFIG_PATH", Formula["ffmpeg-full"].opt_lib/"pkgconfig"
     system "pkgconf", "--print-errors", "mpv"
   end
-end  
+end
