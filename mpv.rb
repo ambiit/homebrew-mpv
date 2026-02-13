@@ -4,16 +4,16 @@ class Mpv < Formula
   url "https://github.com/mpv-player/mpv/archive/refs/tags/v0.41.0.tar.gz"
   sha256 "ee21092a5ee427353392360929dc64645c54479aefdb5babc5cfbb5fad626209"
   license :cannot_represent
+  revision 2
   head "https://github.com/mpv-player/mpv.git", branch: "master"
 
   bottle do
-    rebuild 1
-    sha256               arm64_tahoe:   "564a30afb1b03beb488917ccd2759b6d9e8b3083f41245ae0512a29c2b6ab18d"
-    sha256               arm64_sequoia: "13bdd939815343f1352cef1ec987ea97fc1fd99b697d8e466eb1602b4735bd08"
-    sha256               arm64_sonoma:  "88b9c084aa04c0eb29e6351709a0b4022ccf27198048ac2afa61315747afcfd2"
-    sha256 cellar: :any, sonoma:        "37965c940f710111b0f7af0ed67b140c979148ac9a00adc579ce2a3f0f8ce4fe"
-    sha256               arm64_linux:   "1aa15f14db12fdc770942a1ac450378407f516325e0ac21e1f533f48ddcf5456"
-    sha256               x86_64_linux:  "a93d1eacfec60583dceb4b48d8aa98c9e6d3fd28ff701cd31457830776cb6459"
+    sha256               arm64_tahoe:   "04dde613c87e0f026283b953049e1d3e7fd37c0713af31cd8b315a22bd8af84b"
+    sha256               arm64_sequoia: "17c2e3766ca63fa7f46d1724b43f7c418e161c0860ba1ad0cdceb295a9a72cdd"
+    sha256               arm64_sonoma:  "cedfde7fd4aed30fa551b219f17bc17281b88edcac1c27300f3a5ac37b73b410"
+    sha256 cellar: :any, sonoma:        "017708198069e69a629a2fadcdfb1c5d6752e147a0e90c89ba2348e874be6863"
+    sha256               arm64_linux:   "fd6309a98b2e0a8aa717c8bdeebaef885bcc86b50f93802fefa91bc72c242024"
+    sha256               x86_64_linux:  "75977051139de1bb9314f046ab05ae6e47a1e7571f5f0fbd15b5993dc276fa43"
   end
 
   depends_on "docutils" => :build
@@ -21,7 +21,7 @@ class Mpv < Formula
   depends_on "ninja" => :build
   depends_on "pkgconf" => [:build, :test]
   depends_on xcode: :build
-  depends_on "ffmpeg-full"
+  depends_on "ffmpeg"
   depends_on "jpeg-turbo"
   depends_on "libarchive"
   depends_on "libass"
@@ -125,7 +125,6 @@ class Mpv < Formula
     assert_match "vapoursynth", shell_output("#{bin}/mpv --vf=help")
 
     # Make sure `pkgconf` can parse `mpv.pc` after the `inreplace`.
-    ENV.append_path "PKG_CONFIG_PATH", Formula["ffmpeg-full"].opt_lib/"pkgconfig"
     system "pkgconf", "--print-errors", "mpv"
   end
 end
