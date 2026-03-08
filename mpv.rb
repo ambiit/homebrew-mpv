@@ -4,16 +4,16 @@ class Mpv < Formula
   url "https://github.com/mpv-player/mpv/archive/refs/tags/v0.41.0.tar.gz"
   sha256 "ee21092a5ee427353392360929dc64645c54479aefdb5babc5cfbb5fad626209"
   license :cannot_represent
-  revision 2
+  revision 3
   head "https://github.com/mpv-player/mpv.git", branch: "master"
 
   bottle do
-    sha256               arm64_tahoe:   "04dde613c87e0f026283b953049e1d3e7fd37c0713af31cd8b315a22bd8af84b"
-    sha256               arm64_sequoia: "17c2e3766ca63fa7f46d1724b43f7c418e161c0860ba1ad0cdceb295a9a72cdd"
-    sha256               arm64_sonoma:  "cedfde7fd4aed30fa551b219f17bc17281b88edcac1c27300f3a5ac37b73b410"
-    sha256 cellar: :any, sonoma:        "017708198069e69a629a2fadcdfb1c5d6752e147a0e90c89ba2348e874be6863"
-    sha256               arm64_linux:   "fd6309a98b2e0a8aa717c8bdeebaef885bcc86b50f93802fefa91bc72c242024"
-    sha256               x86_64_linux:  "75977051139de1bb9314f046ab05ae6e47a1e7571f5f0fbd15b5993dc276fa43"
+    sha256               arm64_tahoe:   "62fb8fa00d4e5acfbc2a4205e6fdab481df3948f7e98e2f153eaa01a38c20198"
+    sha256               arm64_sequoia: "99fcb3a69832822620ea41296af7b2e71a8565e71286cc0825a854e2004c69b7"
+    sha256               arm64_sonoma:  "070275c6f03a5f743821459e05542e5518ecb8b75f202deff1e732f11d5788a3"
+    sha256 cellar: :any, sonoma:        "fef537744382c65ff62fb3d64b1d18f171d568e8b5ce00fbd1f6d9b7129c447e"
+    sha256               arm64_linux:   "c3acb7d4c41c7733d672b8ab558c371a7ceb725c8d2fee5f7617df11a0557b96"
+    sha256               x86_64_linux:  "a4e8f082ff1c243cf5affd384e6826ba06df3dc3b15076abe2e2cf5df5b36af2"
   end
 
   depends_on "docutils" => :build
@@ -37,8 +37,6 @@ class Mpv < Formula
   depends_on "yt-dlp"
   depends_on "zimg"
 
-  uses_from_macos "zlib"
-
   on_macos do
     depends_on "molten-vk"
   end
@@ -59,6 +57,7 @@ class Mpv < Formula
     depends_on "pulseaudio"
     depends_on "wayland"
     depends_on "wayland-protocols" => :no_linkage # needed by mpv.pc
+    depends_on "zlib-ng-compat"
   end
 
   conflicts_with cask: "stolendata-mpv", because: "both install `mpv` binaries"
